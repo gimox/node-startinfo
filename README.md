@@ -23,7 +23,7 @@ var app = require('../app')
     , http = require('http')
     , port = parseInt(process.env.PORT, 10) || 3001
     , server = http.createServer(app)
-    , start require('node-startinfo')
+    , start = require('node-startinfo')
     , server = http.createServer(app);
 
  server.listen(port);
