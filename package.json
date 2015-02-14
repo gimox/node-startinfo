@@ -1,0 +1,34 @@
+{
+  "name": "node-startinfo",
+  "description": "Useful info when starting project",
+  "version": "0.0.1",
+  "author": "Giorgio Modoni <modogio@gmail.com>",
+  "homepage":"https://github.com/gimox/node-startinfo",
+  "main": "./lib/main",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gimox/node-startinfo"
+  },
+  "bugs": {
+    "url": "https://github.com/gimox/node-startinfo/issues"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "express": "*",
+    "morgan": "*",
+    "mocha": "*",
+    "request": "*",
+    "should": "*",
+    "describe": "*"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "keywords": [
+    "startinfo",
+    "info",
+    "routes"
+  ],
+  "license": "MIT"
+}
