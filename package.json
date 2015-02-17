@@ -1,7 +1,7 @@
 {
   "name": "node-startinfo",
   "description": "Useful info when starting project",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Giorgio Modoni <modogio@gmail.com>",
   "homepage":"https://github.com/gimox/node-startinfo",
   "main": "./lib/main",
