@@ -1,4 +1,3 @@
 .gitingnore
-
 .idea
-
+.DS_Store
