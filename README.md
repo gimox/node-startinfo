@@ -1,4 +1,4 @@
-nodejs startinfo
+nodejs startinfo for express
 ===================
 [![Build Status](https://travis-ci.org/gimox/node-startinfo.svg?branch=master)](https://travis-ci.org/gimox/node-startinfo)
 [![npm version](https://badge.fury.io/js/node-startinfo.svg)](https://badge.fury.io/js/node-startinfo)
