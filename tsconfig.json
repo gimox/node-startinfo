@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "removeComments": true
+  },
+  "include": [
+    "src/**/**.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "doc",
+    "demo"
+  ],
+  "typeRoots": [
+    "./node_modules/@types/"
+  ]
+}
