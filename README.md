@@ -1,6 +1,7 @@
-# nodejs startinfo
-
-
+nodejs startinfo
+===================
+[![Build Status](https://travis-ci.org/gimox/node-startinfo.svg?branch=master)](https://travis-ci.org/gimox/node-startinfo)
+[![npm version](https://badge.fury.io/js/node-startinfo.svg)](https://badge.fury.io/js/node-startinfo)
 
 - set server onListening and error events
 
@@ -9,33 +10,45 @@
 - add error on start server
 
 
+breaking changes with version 1
+-------------
+NOTE: version 2 break with 1.x and 0.x, take a look at "Usage"
+
+
+
 Usage
 -------------
 After configuring and starting server you can call this function.
 
-Example using Express, file ./bin/wwww
-
+Example using Express
 
 ```js
+...
+let express = require("express");
+let http = require('http');
+let startInfo = require('node-startinfo');
+...
 
-var app = require('../app')
-    , debug = require('debug')('flux:server')
-    , http = require('http')
-    , port = parseInt(process.env.PORT, 10) || 3001
-    , server = http.createServer(app)
-    , start = require('node-startinfo')
-    , server = http.createServer(app);
+let app = express();
+let port = process.env.PORT || 3000;
+app.set("port", port);
+...
 
- server.listen(port);
- start.displayError(server); // display start info
- start.displayInfo(server); // dispaly error
+let server = http.createServer(app);
+server.listen(port);
 
-```
+// this is the code!
+let info = new startInfo(server);
+info.onError(); // if you like to manage start error
+info.onListening(); // display info in console
+
+````
 
 
 
 
-This is a screenshot of start info console
+
+Console Screenshot
 -------------
 
       Application name : myapp
