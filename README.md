@@ -18,9 +18,15 @@ NOTE: version 2 break with 1.x and 0.x, take a look at "Usage"
 
 Usage
 -------------
-After configuring and starting server you can call this function.
+After configuring and starting server you can call this function:
+```js
+let info = new startInfo(server);
+info.onError(); // manage start error
+info.onListening(); // display server info
+```
 
-Example using Express
+
+Full example using Express
 
 ```js
 ...
@@ -39,7 +45,7 @@ server.listen(port);
 
 // this is the code!
 let info = new startInfo(server);
-info.onError(); // if you like to manage start error
+info.onError(); // manage start error
 info.onListening(); // display info in console
 
 ````
