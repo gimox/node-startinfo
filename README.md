@@ -2,6 +2,7 @@ nodejs startinfo for express
 ===================
 [![Build Status](https://travis-ci.org/gimox/node-startinfo.svg?branch=master)](https://travis-ci.org/gimox/node-startinfo)
 [![npm version](https://badge.fury.io/js/node-startinfo.svg)](https://badge.fury.io/js/node-startinfo)
+[![Coverage Status](https://coveralls.io/repos/github/gimox/node-startinfo/badge.svg?branch=master)](https://coveralls.io/github/gimox/node-startinfo?branch=master)
 
 - set server onListening and error events
 
@@ -18,8 +19,9 @@ NOTE: version 2 break with 1.x and 0.x, take a look at "Usage"
 
 Usage
 -------------
-After configuring and starting server you can call this function:
-```js
+After configuring and starting server you can call this function:  
+
+```js 
 let info = new startInfo(server);
 info.onError(); // manage start error
 info.onListening(); // display server info
