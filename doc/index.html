@@ -64,7 +64,10 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="nodejs-startinfo">nodejs startinfo</h1>
+				<h1 id="nodejs-startinfo-for-express">nodejs startinfo for express</h1>
+				<p><a href="https://travis-ci.org/gimox/node-startinfo"><img src="https://travis-ci.org/gimox/node-startinfo.svg?branch=master" alt="Build Status"></a>
+					<a href="https://badge.fury.io/js/node-startinfo"><img src="https://badge.fury.io/js/node-startinfo.svg" alt="npm version"></a>
+				<a href="https://coveralls.io/github/gimox/node-startinfo?branch=master"><img src="https://coveralls.io/repos/github/gimox/node-startinfo/badge.svg?branch=master" alt="Coverage Status"></a></p>
 				<ul>
 					<li><p>set server onListening and error events</p>
 					</li>
@@ -73,23 +76,62 @@
 					<li><p>add error on start server</p>
 					</li>
 				</ul>
+				<h2 id="breaking-changes-with-version-1">breaking changes with version 1</h2>
+				<p>NOTE: version 2 break with 1.x and 0.x, take a look at &quot;Usage&quot;</p>
 				<h2 id="usage">Usage</h2>
-				<p>After configuring and starting server you can call this function.</p>
-				<p>Example using Express, file ./bin/wwww</p>
-				<pre><code class="lang-js">
-<span class="hljs-keyword">var</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../app'</span>)
-    , debug = <span class="hljs-built_in">require</span>(<span class="hljs-string">'debug'</span>)(<span class="hljs-string">'flux:server'</span>)
-    , http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>)
-    , port = <span class="hljs-built_in">parseInt</span>(process.env.PORT, <span class="hljs-number">10</span>) || <span class="hljs-number">3001</span>
-    , server = http.createServer(app)
-    , start = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-startinfo'</span>)
-    , server = http.createServer(app);
-
- server.listen(port);
- start.displayError(server); <span class="hljs-comment">// display start info</span>
- start.displayInfo(server); <span class="hljs-comment">// dispaly error</span>
+				<p>After configuring and starting server you can call this function:  </p>
+				<pre><code class="lang-js"><span class="hljs-keyword">let</span> info = <span class="hljs-keyword">new</span> startInfo(server);
+info.onError(); <span class="hljs-comment">// manage start error</span>
+info.onListening(); <span class="hljs-comment">// display server info</span>
 </code></pre>
-				<h2 id="this-is-a-screenshot-of-start-info-console">This is a screenshot of start info console</h2>
+				<p>Full example using Express</p>
+				<pre><code class="lang-js">...
+let express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);
+<span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);
+<span class="hljs-keyword">let</span> StartInfo = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-startinfo'</span>);
+...
+
+let app = express();
+<span class="hljs-keyword">let</span> port = process.env.PORT || <span class="hljs-number">3000</span>;
+app.set(<span class="hljs-string">"port"</span>, port);
+...
+
+let server = http.createServer(app);
+server.listen(port);
+
+<span class="hljs-comment">// this is the code!</span>
+<span class="hljs-keyword">let</span> info = <span class="hljs-keyword">new</span> StartInfo(server);
+info.onError(); <span class="hljs-comment">// manage start error</span>
+info.onListening(); <span class="hljs-comment">// display info in console</span>
+
+<span class="hljs-string">`</span>
+</code></pre>
+				<pre><code class="lang-js">
+<span class="hljs-comment">// TYPESCRIPT</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">"express"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">"http"</span>;
+<span class="hljs-keyword">import</span> {StartInfo} <span class="hljs-keyword">from</span> <span class="hljs-string">"node-startinfo"</span>;
+
+<span class="hljs-keyword">let</span> debug = <span class="hljs-built_in">require</span>(<span class="hljs-string">"debug"</span>)(<span class="hljs-string">"startinfo:server"</span>);
+
+<span class="hljs-keyword">let</span> app: express.Express = express();
+<span class="hljs-keyword">let</span> port: number = process.env.PORT || <span class="hljs-number">3000</span>;
+app.set(<span class="hljs-string">"port"</span>, port);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> server: http.Server = http.createServer(app);
+server.listen(port);
+
+
+<span class="hljs-keyword">let</span> info: StartInfo = <span class="hljs-keyword">new</span> StartInfo(server);
+info.onError();
+info.onListening();
+
+
+app.get(<span class="hljs-string">"/"</span>, (req: express.Request, <span class="hljs-attr">res</span>: express.Response) =&gt; {
+    res.send(<span class="hljs-string">"Hello World!"</span>);
+});
+</code></pre>
+				<h2 id="console-screenshot">Console Screenshot</h2>
 				<pre><code>  <span class="hljs-selector-tag">Application</span> <span class="hljs-selector-tag">name</span> : <span class="hljs-selector-tag">myapp</span>
   <span class="hljs-selector-tag">Project</span> <span class="hljs-selector-tag">version</span>  : 0<span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.1</span>
   <span class="hljs-selector-tag">Server</span> <span class="hljs-selector-tag">name</span>      : <span class="hljs-selector-tag">vagrant-ubuntu-trusty-64</span>

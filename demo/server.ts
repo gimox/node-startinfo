@@ -1,21 +1,23 @@
 import * as express from "express";
-import {startInfo} from "../src/main";
+import * as http from "http";
+import {StartInfo} from "../src/main";
 
 let debug = require("debug")("startinfo:server");
-let http = require("http");
 
-let app = express();
+let app: express.Express = express();
 let port: number = process.env.PORT || 3000;
 app.set("port", port);
 
-export let server = http.createServer(app);
+export let server: http.Server = http.createServer(app);
 server.listen(port);
 
-let info = new startInfo(server);
+
+let info: StartInfo = new StartInfo(server);
 info.onError();
 info.onListening();
 
-app.get("/", function (req, res) {
+
+app.get("/", (req: express.Request, res: express.Response) => {
     res.send("Hello World!");
 });
 

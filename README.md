@@ -34,7 +34,7 @@ Full example using Express
 ...
 let express = require("express");
 let http = require('http');
-let startInfo = require('node-startinfo');
+let StartInfo = require('node-startinfo');
 ...
 
 let app = express();
@@ -46,11 +46,42 @@ let server = http.createServer(app);
 server.listen(port);
 
 // this is the code!
-let info = new startInfo(server);
+let info = new StartInfo(server);
 info.onError(); // manage start error
 info.onListening(); // display info in console
 
 ````
+
+
+
+
+```js
+
+// TYPESCRIPT
+import * as express from "express";
+import * as http from "http";
+import {StartInfo} from "node-startinfo";
+
+let debug = require("debug")("startinfo:server");
+
+let app: express.Express = express();
+let port: number = process.env.PORT || 3000;
+app.set("port", port);
+
+export let server: http.Server = http.createServer(app);
+server.listen(port);
+
+
+let info: StartInfo = new StartInfo(server);
+info.onError();
+info.onListening();
+
+
+app.get("/", (req: express.Request, res: express.Response) => {
+    res.send("Hello World!");
+});
+```
+
 
 
 

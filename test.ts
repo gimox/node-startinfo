@@ -1,7 +1,7 @@
 import {server} from "./demo/server";
 import * as info from "simple-node-info";
 
-import  * as chai from "chai";
+import * as chai from "chai";
 
 const chaiHttp = require("chai-http");
 const should = chai.should();
@@ -10,7 +10,7 @@ const URL = "http://localhost:3000";
 
 chai.use(chaiHttp);
 
-console.log(server.address().port);
+//console.log(server.address().port);
 
 describe('Server is Up: ', () => {
     it('/GET return 200', (done) => {
