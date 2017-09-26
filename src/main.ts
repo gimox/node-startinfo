@@ -8,7 +8,7 @@ export class StartInfo {
         this.server = server;
     }
 
-    getPkg() {
+    getPkg(): any {
         let pkg: any = {};
 
         try {
@@ -20,8 +20,9 @@ export class StartInfo {
         return pkg;
     }
 
-    onListening() {
+    onListening(): void {
         let file: any = this.getPkg();
+        const env =  process.env.NODE_ENV || "dev (no environment set)";
 
         this.server.on("listening", () => {
 
@@ -31,6 +32,7 @@ export class StartInfo {
             console.info("::  " + new Date());
             console.info(" ");
             console.info("      Application name : \x1b[36m" + file.name + "\x1b[0m");
+            console.info("      Environment      : " + env);
             console.info("      Project version  : " + file.version);
             console.info("      Server name      : " + info.getHostname());
             console.info("      Ip               : " + info.getIp());
@@ -42,14 +44,20 @@ export class StartInfo {
         })
     }
 
-    onError() {
+    onError(): void {
         this.server.on("error", (error) => {
 
             if (error.syscall !== "listen") {
                 throw error;
             }
 
-            let port: number = this.server.address().port;
+            let port:  number | string;
+
+            try {
+                port = this.server.address().port;
+            }catch(e) {
+                port = "port";
+            }
 
             let bind: number | string = typeof port === "string"
                 ? "Pipe " + port

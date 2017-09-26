@@ -18,6 +18,7 @@ class StartInfo {
     }
     onListening() {
         let file = this.getPkg();
+        const env = process.env.NODE_ENV || "dev (no environment set)";
         this.server.on("listening", () => {
             console.info(" ");
             console.info("\x1b[32m_______________________________________________________________\x1b[0m");
@@ -25,6 +26,7 @@ class StartInfo {
             console.info("::  " + new Date());
             console.info(" ");
             console.info("      Application name : \x1b[36m" + file.name + "\x1b[0m");
+            console.info("      Environment      : " + env);
             console.info("      Project version  : " + file.version);
             console.info("      Server name      : " + info.getHostname());
             console.info("      Ip               : " + info.getIp());
@@ -40,7 +42,13 @@ class StartInfo {
             if (error.syscall !== "listen") {
                 throw error;
             }
-            let port = this.server.address().port;
+            let port;
+            try {
+                port = this.server.address().port;
+            }
+            catch (e) {
+                port = "port";
+            }
             let bind = typeof port === "string"
                 ? "Pipe " + port
                 : "Port " + port;

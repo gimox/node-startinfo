@@ -1,7 +1,7 @@
 {
   "name": "node-startinfo",
   "description": "Useful info when starting project",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "Giorgio Modoni <modogio@gmail.com>",
   "homepage": "https://github.com/gimox/node-startinfo",
   "main": "./build/main",
@@ -13,25 +13,25 @@
     "url": "https://github.com/gimox/node-startinfo/issues"
   },
   "dependencies": {
-    "@types/node": "^7.0.0",
+    "@types/node": "^7.0.43",
     "simple-node-info": "0.0.x"
   },
   "devDependencies": {
-    "@types/chai": "^3.4.35",
+    "@types/chai": "^3.5.2",
     "@types/chai-http": "0.0.30",
-    "@types/express": "^4.0.35",
-    "@types/mocha": "^2.2.40",
+    "@types/express": "^4.0.37",
+    "@types/mocha": "^2.2.43",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "coveralls": "^2.13.0",
-    "express": "^4.15.2",
-    "mocha": "^3.2.0",
-    "nodemon": "^1.11.0",
+    "express": "^4.15.5",
+    "mocha": "^3.5.3",
+    "nodemon": "^1.12.1",
     "nyc": "^10.2.0",
-    "ts-node": "^3.0.2",
+    "ts-node": "^3.3.0",
     "tslint": "^4.3.1",
     "typedoc": "^0.5.5",
-    "typescript": "^2.2.2"
+    "typescript": "^2.5.2"
   },
   "scripts": {
     "start": "npm run live",
